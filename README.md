@@ -2,7 +2,10 @@
 
 ## About
 
+A Capture the Flag (CTF) event is a cybersecurity competition where participants solve security challenges to capture "flags" (unique strings) as proof of completing each task. These challenges test skills in areas like cryptography, web security, reverse engineering, and network forensics. Participants, often grouped into teams, compete to score the highest by finding the most flags. CTF events are popular in cybersecurity training and serve as practical, hands-on learning experiences for professionals and enthusiasts alike.
+
 The goal of the project is to extract data from a JSON source, parse it and ingest into a Postgres database. Model the data and finally create a dashboard to review the results.
+
 
 ## Purpose Of The Project
 
@@ -13,11 +16,20 @@ Develop the following skills:
 3. Python: script to parse the JSON file and break it into the different tables
 4. Analytics: Visualize the results using Python libraries i.e. Numpy, Pandas, Matplotlib, Seaborn
 
+
 ## About The Data
 
 The data comes from [Faust CTF 2024](https://2024.faustctf.net/competition/scoreboard.json)
 
-- [ ] Add table or summary of the JSON data
+JSON Key Observations
+
+Root-Level Fields: The JSON has a root-level tick and teams array. This aligns well with the parse_scoreboard_json() function, which expects these fields to extract tick and teams data.
+
+Teams Array: Each entry within the teams array includes fields like rank, id, name, services, offense, defense, sla, total, image, and thumbnail. This structure matches the code’s expectation for team data processing:
+
+Team details (such as team_id, rank, and name) go into the teams_df DataFrame.
+Service details are parsed into a services_df DataFrame with additional information on each service's status, offense, defense, and sla.
+Status Descriptions: To use status-descriptions, ensure it is either directly provided within the JSON, or the code will need adjustments if these descriptions are obtained from another source.
 
 ### Analyst List
 
@@ -49,15 +61,7 @@ WIP - Specific calculations for the dashboard
 
 3. **Exploratory Data Analysis (EDA):** Exploratory data analysis is done to answer the listed questions and aims of this project.
 
-JSON Key Observations
 
-Root-Level Fields: The JSON has a root-level tick and teams array. This aligns well with the parse_scoreboard_json() function, which expects these fields to extract tick and teams data.
-
-Teams Array: Each entry within the teams array includes fields like rank, id, name, services, offense, defense, sla, total, image, and thumbnail. This structure matches the code’s expectation for team data processing:
-
-Team details (such as team_id, rank, and name) go into the teams_df DataFrame.
-Service details are parsed into a services_df DataFrame with additional information on each service's status, offense, defense, and sla.
-Status Descriptions: To use status-descriptions, ensure it is either directly provided within the JSON, or the code will need adjustments if these descriptions are obtained from another source.
 
 ## Game Questions To Answer
 
